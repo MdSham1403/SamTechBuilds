@@ -2,14 +2,14 @@
    Edit values here; index.html and script.js read from window.SITE. */
 window.SITE = {
   contact: {
-    email: "mdsham1403@gmail.com",
+    email: "samtechbuilds@gmail.com",
     // ⚠ PLACEHOLDER — REPLACE BEFORE LAUNCH. No WhatsApp number existed in the project.
     // Country code + number, digits only, no "+" or spaces (e.g. "919876543210").
     // While this is a placeholder, every WhatsApp button is hidden automatically.
-    whatsapp: "91XXXXXXXXXX",
+    whatsapp: "917358680064",
     whatsappMessage: "Hi Sam Tech Builds, I'd like to discuss a project.",
-    github: "https://github.com/MdSham1403",
-    linkedin: "https://www.linkedin.com/in/md-shameer/",
+    github: "https://github.com/SamTechBuilds",
+    linkedin: "https://www.linkedin.com/in/samtechbuilds/",
     location: "Chennai, Tamil Nadu, India"
   },
 
