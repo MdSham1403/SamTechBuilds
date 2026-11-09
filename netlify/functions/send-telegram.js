@@ -77,10 +77,10 @@ exports.handler = async (event) => {
     }
 
     const text = [
-      "New project enquiry — Sam Tech Builds", "",
-      `Name: ${f.name}`, `Email: ${f.email}`,
-      `Business: ${f.business || "—"}`, `Service: ${f.service || "—"}`,
-      `Budget: ${f.budget || "—"}`, "", "Message:", f.message,
+      "🚀 New project enquiry — Sam Tech Builds", "",
+      `👤 Name: ${f.name}`, `📧   Email: ${f.email}`,
+      `💼 Business: ${f.business || "—"}`, `💻 Service: ${f.service || "—"}`,
+      `💰 Budget: ${f.budget || "—"}`, "", "📂Message:", f.message,
     ].join("\n");
 
     const r = await sendTelegram(token, chatId, text);
