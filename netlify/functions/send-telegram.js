@@ -9,10 +9,16 @@ const json = (statusCode, obj) => ({
 });
 
 exports.handler = async (event) => {
-  if (event.httpMethod !== "POST") return json(405, { ok: false, error: "Method not allowed" });
+  // Trim whitespace and stray quotes, a very common copy-paste problem in env var values.
+  const envVal = (k) => (process.env[k] || "").trim().replace(/^["']|["']$/g, "").trim();
+  const token = envVal("TELEGRAM_BOT_TOKEN");
+  const chatId = envVal("TELEGRAM_CHAT_ID");
 
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  // Open /.netlify/functions/send-telegram in a browser to check setup (shows yes/no only, never the values).
+  if (event.httpMethod === "GET") {
+    return json(200, { ok: true, function: "running", TELEGRAM_BOT_TOKEN_set: !!token, TELEGRAM_CHAT_ID_set: !!chatId, node: process.version });
+  }
+  if (event.httpMethod !== "POST") return json(405, { ok: false, error: "Method not allowed" });
   if (!token || !chatId) {
     console.error("TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID are not set");
     return json(503, { ok: false, error: "Notifications are not configured" });
@@ -53,12 +59,14 @@ exports.handler = async (event) => {
       signal: AbortSignal.timeout(8000),
     });
     if (!res.ok) {
-      console.error("Telegram API responded with status", res.status);
-      return json(502, { ok: false, error: "Could not deliver notification" });
+      let why = "";
+      try { why = (await res.json()).description || ""; } catch {}
+      console.error("Telegram API responded with status", res.status, why); // e.g. "Unauthorized" = bad token, "chat not found" = bad chat ID
+      return json(502, { ok: false, error: "Could not deliver notification", telegram: why });
     }
     return json(200, { ok: true });
   } catch (err) {
-    console.error("Telegram request failed:", err.name);
-    return json(502, { ok: false, error: "Could not deliver notification" });
+    console.error("Telegram request failed:", err.name, err.message);
+    return json(502, { ok: false, error: "Could not deliver notification", telegram: `network error: ${err.name}` });
   }
 };
