@@ -3,95 +3,105 @@
 window.SITE = {
   contact: {
     email: "samtechbuilds@gmail.com",
-    // ⚠ PLACEHOLDER — REPLACE BEFORE LAUNCH. No WhatsApp number existed in the project.
-    // Country code + number, digits only, no "+" or spaces (e.g. "919876543210").
-    // While this is a placeholder, every WhatsApp button is hidden automatically.
+    // Country code + number, digits only, no "+" or spaces. If invalid, WhatsApp buttons hide automatically.
     whatsapp: "917358680064",
     whatsappMessage: "Hi Sam Tech Builds, I'd like to discuss a project.",
-    github: "https://github.com/SamTechBuilds",
+    github: "https://github.com/MdSham1403",
     linkedin: "https://www.linkedin.com/in/samtechbuilds/",
     location: "Chennai, Tamil Nadu, India"
   },
 
+  // Three primary specialisations.
   services: [
-    { icon: "web", title: "Website Development", service: "Website Development",
-      blurb: "Business websites, landing pages, portfolio websites, and responsive web experiences." },
-    { icon: "app", title: "Custom Web Applications", service: "Custom Web Applications",
-      blurb: "Business tools, internal management systems, trackers, and custom application development." },
-    { icon: "chart", title: "Excel Automation & Dashboards", service: "Excel Automation & Dashboards",
-      blurb: "Automated reporting, MIS dashboards, Excel workflows, and data visualization." },
-    { icon: "auto", title: "Business Process Automation", service: "Business Process Automation",
-      blurb: "Workflow optimization, repetitive task automation, and operational tools." },
-    { icon: "api", title: "API & Chatbot Integration", service: "API & Chatbot Integration",
-      blurb: "API integrations, chatbot functionality, and connecting different business systems." },
-    { icon: "hex", title: "Digital Solutions", service: "Other",
-      blurb: "Tailored technology solutions based on individual business requirements." }
+    { icon: "web", title: "Web Development", service: "Web Development",
+      blurb: "Fast, responsive websites that present your business clearly and turn visitors into enquiries.",
+      items: ["Business websites", "Landing pages", "Portfolio websites", "Responsive development", "Website redesign", "Contact and enquiry integrations"] },
+    { icon: "chart", title: "Dashboards & Data Analytics", service: "Dashboards & Data Analytics",
+      blurb: "Turn scattered spreadsheets into clear dashboards and reports you can act on.",
+      items: ["Excel dashboards", "MIS reporting", "Sales and inventory tracking", "Data visualization", "Automated reporting", "Custom reporting applications"] },
+    { icon: "auto", title: "Business Automation & Custom Software", service: "Business Automation & Custom Software",
+      blurb: "Custom tools that replace repetitive manual work and keep your operations in one place.",
+      items: ["Business management applications", "Workflow automation", "Enquiry and customer management", "Custom admin dashboards", "API integrations and AI features", "Automated notifications"] }
   ],
+  additional: ["Logo and branding design", "Social media creatives", "Digital posters", "Google Business Profile setup", "Basic SEO", "Website maintenance and technical support", "AI chatbot integration", "Telegram bot integration", "Digital invitations and personalized photo frames"],
 
-  // links: only real, verified URLs. type "live" = hosted demo, "code" = source repository.
-  // A project with no links renders as a card without a link. preview = CSS preview style.
+  // Status is part of "kind". Only live demo links that exist are listed. Confirm statuses before launch.
   projects: [
-    { featured: true, name: "UAM InsightX", kind: "Portfolio project", preview: "dash",
+    { featured: true, name: "UAM InsightX", kind: "Personal project · Prototype", preview: "dash",
       tags: ["Flask", "React"],
       desc: "Excel reporting and analytics dashboard that handles UAM operational reporting and visual insights.",
       stats: [["53,880", "Total records"], ["40,343", "Completed"], ["13,537", "Pending"]],
       links: [] },
-    { featured: true, name: "MoviezHub", kind: "Portfolio project", preview: "stream",
+    { featured: true, name: "MoviezHub", kind: "Personal project · Live demo", preview: "stream",
       tags: ["Django", "HLS", "Cloudinary", "Bunny"],
       desc: "Movie streaming web application using Cloudinary and Bunny for media storage and streaming infrastructure, with adaptive HLS playback.",
       links: [{ type: "live", label: "View Live Project", url: "https://moviezhub14.up.railway.app/" }] },
-    { featured: true, name: "BizFlow", kind: "Portfolio project", preview: "flow",
+    { featured: true, name: "BizFlow", kind: "Personal project · Prototype", preview: "flow",
       tags: ["React", "Vite", "Supabase"],
       desc: "Business workflow application designed to organise and manage business operations.",
       links: [] },
-    { featured: true, name: "UAM Connect", kind: "Portfolio project", preview: "mobile",
-      tags: ["Progressive Web App"],
+    { featured: true, name: "UAM Connect", kind: "Personal project · In planning", preview: "mobile",
+      tags: ["Progressive Web App", "React", "Supabase"],
       desc: "Private, mobile-first team coordination app focused on operational roles and internal communication.",
       links: [] },
-    { name: "Multiplayer Mini-Games Platform", kind: "Portfolio project", preview: "grid",
+    { name: "Multiplayer Mini-Games Platform", kind: "Personal project · Live demo", preview: "grid",
       tags: ["React", "Node.js", "Socket.io", "PostgreSQL"],
       desc: "Real-time multiplayer gaming platform with live game rooms, leaderboards, and an admin panel.",
       links: [{ type: "live", label: "View Live Project", url: "https://minigames-fawn-theta.vercel.app/" }] },
-    { name: "Multi-Tenant Restaurant SaaS", kind: "Portfolio project", preview: "dash",
+    { name: "Multi-Tenant Restaurant SaaS", kind: "Personal project · Live demo", preview: "dash",
       tags: ["Django", "React", "PostgreSQL"],
       desc: "POS and restaurant management system with multiple tenants, staff tracking, session ledgers, menu management, and table billing.",
       links: [{ type: "live", label: "View Live Project", url: "https://posprosystem.netlify.app/" }] },
-    { name: "TubeGrab — YouTube Downloader", kind: "Portfolio project", preview: "stream",
+    { name: "TubeGrab — YouTube Downloader", kind: "Personal project · Live demo", preview: "stream",
       tags: ["React", "Node.js", "yt-dlp"],
       desc: "Clean web UI for downloading YouTube videos in multiple formats, with an Express, yt-dlp and ffmpeg backend.",
       links: [{ type: "live", label: "View Live Project", url: "https://yttubegrab.netlify.app/" }] },
-    { name: "Ops Performance Tracker", kind: "Portfolio project", preview: "dash",
+    { name: "Ops Performance Tracker", kind: "Personal project · Live demo", preview: "dash",
       tags: ["React Context", "Recharts", "IndexedDB"],
       desc: "Operations analytics dashboard that reads large daily spreadsheet logs to flag SLA breaches and track turnaround time (TAT).",
       links: [{ type: "live", label: "View Live Project", url: "https://ituamdashboard.netlify.app/" }] }
   ],
 
   skills: [
-    { icon: "code", title: "Frontend", items: ["HTML", "CSS", "JavaScript", "React", "Vite"] },
-    { icon: "server", title: "Backend", items: ["Python", "Flask", "Django", "REST APIs"] },
-    { icon: "db", title: "Database & Cloud", items: ["Supabase", "Firebase", "SQL", "Cloudinary"] },
-    { icon: "auto", title: "Automation & Analytics", items: ["Excel", "Advanced Excel", "Data Reporting", "MIS Dashboards", "Workflow Automation"] },
-    { icon: "tool", title: "Development Tools", items: ["Git", "GitHub", "VS Code", "Postman"] }
+    { icon: "code", title: "Frontend Development", items: ["HTML5", "CSS3", "JavaScript", "React.js", "Vite", "Responsive Web Design", "UI/UX Implementation"] },
+    { icon: "server", title: "Backend & Application Development", items: ["Python", "Flask", "Django", "Node.js Fundamentals", "REST APIs", "Authentication & Authorization", "CRUD Operations"] },
+    { icon: "db", title: "Database, Cloud & Storage", items: ["Supabase", "Firebase", "SQL", "PostgreSQL", "Cloudinary", "Netlify"] },
+    { icon: "chart", title: "Data Analytics & BI", items: ["Microsoft Excel", "Advanced Excel", "MIS Reporting", "Interactive Dashboards", "Data Visualization", "Business Performance Tracking", "Data Cleaning & Processing", "Automated Reporting"] },
+    { icon: "auto", title: "Automation & AI Integrations", items: ["Python Automation", "Workflow Automation", "AI API Integration", "LLM Integration", "AI Chatbot Integration", "Telegram Bot Integration", "Third-Party API Integration"] },
+    { icon: "tool", title: "Development & Deployment Tools", items: ["Git", "GitHub", "Visual Studio Code", "Postman", "Claude Code", "Netlify Deployment", "Application Debugging"] },
+    { icon: "hex", title: "Additional Digital Capabilities", items: ["Website SEO Fundamentals", "Google Business Profile Setup", "Digital Branding", "Graphic Design", "Website Maintenance", "IT Technical Support"] }
   ],
 
   process: [
-    { title: "Understand", text: "Understand the business requirement and objectives." },
-    { title: "Plan", text: "Define the solution, features, and implementation approach." },
-    { title: "Build", text: "Design, develop, and test the solution." },
-    { title: "Deliver", text: "Deploy the solution and provide necessary support." }
+    { title: "Discover", text: "Understand your business, requirements and goals." },
+    { title: "Plan", text: "Define the solution, scope, features and estimated timeline." },
+    { title: "Build", text: "Design, develop and test the solution." },
+    { title: "Deliver & Support", text: "Deploy the solution and provide agreed post-delivery support." }
   ],
 
-  // Prices are kept exactly as specified. Do not change without the owner's approval.
+  // Introductory prices and scope are editable here. Confirm the scope limits before launch.
   pricing: {
-    note: "Final pricing depends on project requirements, scope, and complexity.",
+    note: "These are introductory starting prices, not fixed quotations. Final pricing depends on your requirements. Hosting, domain names, paid third-party services and revisions beyond the agreed rounds are not included unless stated in your quote.",
     items: [
-      { name: "Landing Page", tag: "Website", service: "Website Development", price: "₹1,999–₹4,999" },
-      { name: "Business Website", tag: "Website", service: "Website Development", price: "₹4,999+" },
-      { name: "Student Tracker", tag: "Tracker", service: "Custom Web Applications", price: "₹1,999" },
-      { name: "Inventory Tracker", tag: "Tracker", service: "Custom Web Applications", price: "₹2,499" },
-      { name: "Excel Automation", tag: "Automation", service: "Excel Automation & Dashboards", price: "₹1,999" },
-      { name: "MIS Dashboard", tag: "Dashboard", service: "Excel Automation & Dashboards", price: "₹2,999" },
-      { name: "Monthly Maintenance", tag: "Support", service: "Other", price: "₹999" }
+      { name: "Landing Page", tag: "Web", service: "Web Development", price: "From ₹2,999", detail: "One responsive page with an enquiry form. One revision round.", cta: "Get this started" },
+      { name: "Portfolio Website", tag: "Web", service: "Web Development", price: "From ₹3,999", detail: "Up to five responsive pages. Two revision rounds.", cta: "Get this started" },
+      { name: "Business Website", tag: "Web", service: "Web Development", price: "From ₹5,999", detail: "Up to eight pages, enquiry integration and basic SEO setup. Two revision rounds.", cta: "Get this started" },
+      { name: "Excel Dashboard", tag: "Analytics", service: "Dashboards & Data Analytics", price: "From ₹1,999", detail: "Cleaned data, summary dashboard, charts and filters built on your Excel data.", cta: "Get this started" },
+      { name: "Custom Software", tag: "Software", service: "Business Automation & Custom Software", price: "Request a quote", detail: "Scoped after a requirements discussion.", cta: "Request a quote" },
+      { name: "Business Automation", tag: "Automation", service: "Business Automation & Custom Software", price: "Request a quote", detail: "Scoped around the workflow you want to automate.", cta: "Request a quote" }
     ]
-  }
+  },
+
+  faq: [
+    ["What types of websites do you build?", "Business websites, landing pages and portfolio websites, plus redesigns of existing sites. All are built to work on phones and desktops."],
+    ["Can you create a website for my small business?", "Yes. Small businesses are a good fit. We start with what you need customers to do, such as call, enquire or visit, and build around that."],
+    ["Do you build custom business applications?", "Yes. These include enquiry and customer management tools, admin dashboards and workflow apps. Scope and price are agreed after a requirements discussion."],
+    ["Can you automate my Excel reporting?", "In most cases, yes. If your reports repeat the same steps each week or month, those steps can usually be automated. Share a sample and we will tell you what is realistic."],
+    ["Can you create dashboards for my business?", "Yes. We build Excel dashboards and web-based reporting dashboards for sales, inventory, operations and similar data."],
+    ["Do you provide website maintenance?", "Yes, as agreed support after delivery. What it covers and what it costs is confirmed in your quote."],
+    ["How long does a project take?", "It depends on scope. We give an estimated timeline in the plan before work starts, and tell you if anything changes."],
+    ["How do I request a quotation?", "Send the enquiry form below or message us on WhatsApp with a short description. We reply with questions or a proposed scope and price."],
+    ["Do you work with remote clients?", "Yes. We are based in Chennai and work with clients across India remotely, using chat, calls and shared files."],
+    ["Can I request custom features?", "Yes. Describe what you need and we will say whether it fits the scope, needs a separate quote, or is better done another way."]
+  ]
 };

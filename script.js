@@ -37,18 +37,22 @@
       ${p.links.length ? `<div class="plinks">${p.links.map((l) => `<a class="btn btn-sm ${l.type === "code" ? "btn-ghost" : "btn-primary"}" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(l.label)}: ${esc(p.name)} (opens in a new tab)">${esc(l.label)}</a>`).join("")}</div>` : ""}
       </div></article>`;
   fill("services", S.services.map((s, i) => `
-    <article class="card spot reveal">${icon(s.icon)}<span class="num" aria-hidden="true">0${i + 1}</span>
-      <div><h3>${esc(s.title)}</h3><p>${esc(s.blurb)}</p></div>
-      <a class="link" href="#contact" data-service="${esc(s.service)}">Discuss your requirement</a></article>`).join(""));
+    <article class="card spot reveal prim-card"><span class="num" aria-hidden="true">0${i + 1}</span>${icon(s.icon)}
+      <h3>${esc(s.title)}</h3><p>${esc(s.blurb)}</p>${lis(s.items, "ticks")}
+      <a class="link" href="#contact" data-service="${esc(s.service)}">Get started</a></article>`).join(""));
+  fill("additional", S.additional.map((t) => `<li>${esc(t)}</li>`).join(""));
   fill("projects-featured", S.projects.filter((p) => p.featured).map(projectCard).join(""));
   fill("projects-more", S.projects.filter((p) => !p.featured).map(projectCard).join(""));
-  fill("skills", S.skills.map((g) => `<article class="card spot reveal"><h3>${icon(g.icon)}${esc(g.title)}</h3>${lis(g.items, "pills")}</article>`).join(""));
+  fill("skills", S.skills.map((g) => `<details class="card spot reveal"><summary><h3>${icon(g.icon)}${esc(g.title)}</h3></summary>${lis(g.items, "pills")}</details>`).join(""));
+  const wide = matchMedia("(min-width:701px)").matches; // on phones only the first two groups start open
+  $$(".stack details").forEach((d, i) => { d.open = wide || i < 2; });
   fill("process", S.process.map((s) => `<li class="reveal"><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></li>`).join(""));
   fill("pricing", S.pricing.items.map((i) => `
-    <article class="card pcard spot reveal"><p class="ptag">${esc(i.tag)}</p><h3 class="pname">${esc(i.name)}</h3><p class="pprice">${esc(i.price)}</p>
-      <a class="link" href="#contact" data-service="${esc(i.service)}">Discuss this</a></article>`).join(""));
+    <article class="card pcard spot reveal"><p class="ptag">${esc(i.tag)}</p><h3 class="pname">${esc(i.name)}</h3><p class="pprice${/\d/.test(i.price) ? "" : " q"}">${esc(i.price)}</p><p class="pd">${esc(i.detail)}</p>
+      <a class="link" href="#contact" data-service="${esc(i.service)}">${esc(i.cta)}</a></article>`).join(""));
   fill("pricing-note", esc(S.pricing.note));
-  fill("footer-services", S.services.map((s) => `<li><a href="#services">${esc(s.title)}</a></li>`).join(""));
+  fill("faq", S.faq.map((f) => `<details class="faq reveal"><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></details>`).join(""));
+  fill("footer-services", S.services.map((s) => `<li><a href="#services">${esc(s.title)}</a></li>`).join("") + `<li class="fsub">Also: ${esc(S.additional.join(", "))}</li>`);
 
   // ---------- Contact details (single source: config.js) ----------
   const C = S.contact;
@@ -141,6 +145,7 @@
     try { const r = await fetch(url, { ...init, signal: ctl.signal }); return r.ok; }
     catch { return false; } finally { clearTimeout(timer); }
   };
+  Object.keys(rules).forEach((k) => { const f = form.elements[k]; f.addEventListener("blur", () => { const m = rules[k](f.value); $(`#e-${k}`).textContent = m || ""; f.setAttribute("aria-invalid", m ? "true" : "false"); }); });
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const bad = validate();
