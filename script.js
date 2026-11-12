@@ -41,6 +41,34 @@
       <h3>${esc(s.title)}</h3><p>${esc(s.blurb)}</p>${lis(s.items, "ticks")}
       <a class="link" href="#contact" data-service="${esc(s.service)}">Get started</a></article>`).join(""));
   fill("additional", S.additional.map((t) => `<li>${esc(t)}</li>`).join(""));
+
+  // ---------- Featured products + detail dialog ----------
+  // Previews are CSS mockups (labelled as illustrative), not screenshots.
+  const FV = {
+    cf: '<div class="mk"><aside><i></i><i></i><i></i><i></i></aside><div class="mk-m"><div class="k3"><b><s></s>Students</b><b><s></s>Enquiries</b><b><s></s>Fees</b></div><div class="ln"><span>Follow-up</span><em>Today</em></div><div class="ln"><span>Admission</span><em class="g">Admitted</em></div><div class="att"><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div></div>',
+    sp: '<div class="mk"><div class="mk-m wide"><div class="sbar"></div><div class="tr"><span>Product A</span><u style="--w:80%"></u></div><div class="tr"><span>Product B</span><u style="--w:55%"></u></div><div class="tr"><span>Product C</span><u style="--w:18%" class="lo"></u><em class="am">Low stock</em></div><div class="tr"><span>Product D</span><u style="--w:66%"></u></div></div><div class="inv"><b>Invoice</b><i></i><i></i><i class="s"></i><em>Paid</em></div></div>',
+    op: '<div class="mk"><div class="mk-m wide"><div class="k3"><b><s></s>Records</b><b><s></s>On time</b><b><s></s>Breached</b></div><svg viewBox="0 0 240 80" preserveAspectRatio="none"><path d="M0 62 L40 48 L80 54 L120 30 L160 38 L200 14 L240 22" fill="none" stroke="currentColor" stroke-width="2.5"/></svg><div class="bars2"><b style="--h:50%"></b><b style="--h:78%"></b><b style="--h:40%"></b><b style="--h:66%"></b><b style="--h:88%"></b></div></div><div class="don"><i></i><span>SLA</span></div></div>',
+  };
+  const pv = (f, note) => `<div class="fp-pv" style="--acc:${f.accent}" role="img" aria-label="Illustrative interface preview of ${esc(f.name)}">${FV[f.key]}<span class="fp-note">${note}</span></div>`;
+  const liveBtn = (f) => `<a class="btn btn-primary btn-sm" href="${esc(f.url)}" target="_blank" rel="noopener noreferrer" aria-label="Live Demo: ${esc(f.name)} (opens in a new tab)">Live Demo</a>`;
+  fill("featured", S.featured.map((f) => `
+    <article class="fp reveal" style="--acc:${f.accent}">${pv(f, "Illustrative preview")}
+      <div class="fp-body"><p class="kind">${esc(f.category)}</p><h3>${esc(f.name)}</h3><p class="fp-tag">${esc(f.tagline)}</p><p>${esc(f.desc)}</p>
+        ${lis(f.highlights, "ticks")}${lis(f.tech, "tags")}
+        <div class="plinks">${liveBtn(f)}<button class="btn btn-ghost btn-sm" type="button" data-open="${f.key}" aria-label="Explore project: ${esc(f.name)}">Explore Project</button></div></div></article>`).join(""));
+  fill("compare", S.compare.map((x) => `<article class="card reveal"><h3>${esc(x.name)}</h3><dl><dt>Manages</dt><dd>${esc(x.manages)}</dd><dt>Starts from</dt><dd>${esc(x.start)}</dd><dt>Produces</dt><dd>${esc(x.out)}</dd></dl></article>`).join(""));
+  const dlg = $("#pd"), sec = (t, b) => `<section><h4>${t}</h4>${b}</section>`;
+  const openP = (k) => {
+    const f = S.featured.find((x) => x.key === k); if (!f || !dlg.showModal) return;
+    $("#pd-body").innerHTML = `${pv(f, "Illustrative preview, not a screenshot")}<div class="pd-txt" style="--acc:${f.accent}"><p class="kind">${esc(f.category)}</p><h3 id="pd-t">${esc(f.name)}</h3><p class="lead">${esc(f.tagline)}</p>
+      ${sec("Product overview", `<p>${esc(f.desc)}</p>`)}${sec("The business problem", `<p>${esc(f.problem)}</p>`)}${sec("The solution", `<p>${esc(f.solution)}</p>`)}
+      ${sec("Main features", lis(f.features, "ticks two"))}${sec("Technology", lis(f.tech, "tags"))}<div class="plinks">${liveBtn(f)}<button class="btn btn-ghost btn-sm" type="button" data-close>Close</button></div></div>`;
+    dlg.showModal(); document.documentElement.classList.add("lock"); dlg.scrollTop = 0;
+  };
+  document.addEventListener("click", (e) => { const o = e.target.closest("[data-open]"); if (o) openP(o.dataset.open); if (e.target.closest("[data-close]")) dlg.close(); });
+  $("#pdClose").addEventListener("click", () => dlg.close());
+  dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener("close", () => document.documentElement.classList.remove("lock"));
   fill("projects-featured", S.projects.filter((p) => p.featured).map(projectCard).join(""));
   fill("projects-more", S.projects.filter((p) => !p.featured).map(projectCard).join(""));
   fill("skills", S.skills.map((g) => `<details class="card spot reveal"><summary><h3>${icon(g.icon)}${esc(g.title)}</h3></summary>${lis(g.items, "pills")}</details>`).join(""));

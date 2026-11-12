@@ -25,6 +25,42 @@ window.SITE = {
   ],
   additional: ["Logo and branding design", "Social media creatives", "Digital posters", "Google Business Profile setup", "Basic SEO", "Website maintenance and technical support", "AI chatbot integration", "Telegram bot integration", "Digital invitations and personalized photo frames"],
 
+  // Featured software products (live demos). Feature lists are the intended scope: delete anything the app does not actually do.
+  featured: [
+    { key: "cf", accent: "#8b5cf6", name: "CentreFlow", category: "Education Management System",
+      tagline: "Everything an education centre needs to manage its daily operations.",
+      url: "https://centreflow.netlify.app/",
+      desc: "A student and education centre management application that brings enquiries, admissions, student records, fees, attendance and reporting together.",
+      problem: "Education centres often track enquiries, admissions, fees and attendance in separate notebooks and spreadsheets, so follow-ups slip and balances are hard to see.",
+      solution: "One application where an enquiry becomes an admission, the student profile keeps its history, and fees, attendance and reports are all in the same place.",
+      highlights: ["Operational dashboard and KPIs", "Enquiry and follow-up tracking", "Enquiry-to-admission conversion", "Fee collection with partial payments", "Printable fee receipts", "Batch-wise attendance"],
+      features: ["Operational dashboard and KPIs", "Student enquiry management", "Follow-up tracking", "Enquiry-to-admission conversion", "Student profiles and activity history", "Fee collection and partial payments", "Outstanding balance tracking", "Printable fee receipts", "Batch-wise attendance management", "Reports and CSV exports"],
+      tech: ["React", "Vite", "TypeScript", "localStorage"] },
+    { key: "sp", accent: "#38d9c8", name: "StockPilot", category: "Inventory & Sales Management",
+      tagline: "Smarter inventory control. Simpler sales management.",
+      url: "https://salesstockpilot.netlify.app/",
+      desc: "A business inventory and sales application for managing products, suppliers, customers, stock movements, invoices and sales performance.",
+      problem: "Small businesses lose track of stock, miss low-stock items and struggle to connect what was sold with what is left and what it earned.",
+      solution: "Products, stock movements, suppliers, customers and invoices live together, so every sale updates stock and the reports show sales, inventory and profit.",
+      highlights: ["Business dashboard and KPIs", "Product and SKU management", "Stock-in, stock-out and adjustments", "Low-stock alerts", "Multi-item sales invoices", "Sales, inventory and profit reports"],
+      features: ["Business dashboard and KPIs", "Product and SKU management", "Stock-in, stock-out and adjustments", "Inventory movement history", "Low-stock alerts", "Supplier management", "Customer management", "Multi-item sales invoices", "Payment tracking", "Invoice printing", "Sales, inventory and profit reports"],
+      tech: ["React", "Vite", "TypeScript", "localStorage"] },
+    { key: "op", accent: "#7fb7ff", name: "OpsPulse MIS", category: "Operations Analytics & MIS Reporting",
+      tagline: "Transform operational data into actionable business insights.",
+      url: "https://opspulsemis.netlify.app/",
+      desc: "An operations analytics and MIS reporting application that imports existing records, validates the data, analyses performance and generates reports.",
+      problem: "Operational data sits in CSV and Excel files that are slow to clean, easy to get wrong and hard to turn into a management report.",
+      solution: "Import the file you already have, map columns, catch bad and duplicate rows before they count, then read performance in dashboards and export reports.",
+      highlights: ["Operational KPI dashboard", "CSV and Excel imports with column mapping", "Data validation and duplicate detection", "Employee and department performance", "SLA analytics", "CSV, Excel and printable exports"],
+      features: ["Operational KPI dashboard", "CSV and Excel imports", "Import preview and column mapping", "Data validation", "Duplicate detection", "Rejected-row reports", "Operational records management", "Search, filtering and sorting", "Employee and department performance", "SLA analytics", "Management reports", "CSV, Excel and printable exports"],
+      tech: ["React", "Vite", "TypeScript"] }
+  ],
+  compare: [
+    { name: "CentreFlow", manages: "Education-centre operations and student information.", start: "Enquiries and admissions.", out: "Fee receipts, attendance and follow-up records." },
+    { name: "StockPilot", manages: "Products, inventory movements and sales.", start: "Stock and sales entered as they happen.", out: "Invoices and sales, stock and profit reports." },
+    { name: "OpsPulse MIS", manages: "Analyses existing operational records into management insights.", start: "CSV or Excel files you already have.", out: "KPI dashboards, SLA analytics and exports." }
+  ],
+
   // Status is part of "kind". Only live demo links that exist are listed. Confirm statuses before launch.
   projects: [
     { featured: true, name: "UAM InsightX", kind: "Personal project · Prototype", preview: "dash",
